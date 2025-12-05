@@ -17,6 +17,10 @@ class World {
             npcs.push_back(npc);
         }
 
+        std::vector<std::shared_ptr<NPC>> getNpcs() {
+            return npcs;
+        }
+
         void print() {
             for (auto& npc : npcs) {
                 if (!npc) continue;
@@ -63,6 +67,6 @@ class World {
                 }
             }
 
-            npcs.erase(std::remove_if(npcs.begin(), npcs.end(), [](auto& p){ return p == nullptr; }), npcs.end());
+            npcs.erase(std::remove_if(npcs.begin(), npcs.end(), [](auto& p){ return p->isDead(); }), npcs.end());
         }
 };

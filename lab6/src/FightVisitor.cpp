@@ -16,24 +16,23 @@ void FightVisitor::resolve(NPC& a, NPC& b) {
     if (a.canKill(b)) {
         notify(a.getType() + " " + a.getName() +
                " убил " + b.getType() + " " + b.getName());
+        b.die();
     }
     if (b.canKill(a)) {
         notify(b.getType() + " " + b.getName() +
                " убил " + a.getType() + " " + a.getName());
+        a.die();
     }
 }
 
-// --- БАЗОВЫЙ СЛУЧАЙ ---
 void FightVisitor::fight(NPC& a, NPC& b) {
     resolve(a, b);
 }
 
-// --- НАПАДАЕТ КОНКРЕТНЫЙ ТИП ---
 void FightVisitor::fight(Knight& a, NPC& b) { resolve(a, b); }
 void FightVisitor::fight(Pegasus& a, NPC& b) { resolve(a, b); }
 void FightVisitor::fight(Dragon& a, NPC& b) { resolve(a, b); }
 
-// --- ЗАЩИЩАЕТСЯ КОНКРЕТНЫЙ ТИП ---
 void FightVisitor::fight(NPC& a, Knight& b) { resolve(a, b); }
 void FightVisitor::fight(NPC& a, Pegasus& b) { resolve(a, b); }
 void FightVisitor::fight(NPC& a, Dragon& b) { resolve(a, b); }

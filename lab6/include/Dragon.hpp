@@ -13,5 +13,7 @@ public:
         return other.getType() == "Pegasus";
     }
 
-    void accept(FightVisitor& v, NPC& other) override;
+    void accept(FightVisitor& v, NPC& other) override {
+        v.fight(*this, other);
+    }
 };

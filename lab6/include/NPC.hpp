@@ -11,6 +11,7 @@ class NPC{
         int x;
         int y;
         std::string name;
+        bool is_dead = false;
 
     protected:
         void valid() {
@@ -30,8 +31,15 @@ class NPC{
         int getY() const { return y; }
         std::string getName() const { return name; }
         virtual std::string getType() const = 0;
-        
+
         virtual bool canKill(const NPC& other) const = 0;
+
+        void die() {
+            is_dead = true;
+        }
+        bool isDead() {
+            return is_dead;
+        }
 
         virtual void accept(FightVisitor& v, NPC& other) = 0;
 };

@@ -6,8 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(lab5
+add_executable(lab6
     main.cpp
+    src/FightVisitor.cpp
 )
 
 include(FetchContent)
@@ -24,6 +25,7 @@ enable_testing()
 
 add_executable(run_tests
     tests/tests.cpp
+    src/FightVisitor.cpp
 )
 
 target_link_libraries(run_tests GTest::gtest_main)
